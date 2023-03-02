@@ -1,8 +1,11 @@
 package _04_Directory_Iteration;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class DirectoryIterator {
 	public static void main(String[] args) {
@@ -19,6 +22,18 @@ public class DirectoryIterator {
 			if(files != null) {
 				for(File f : files) {
 				  System.out.println(f.getAbsolutePath());
+				  String fName = f.getName();
+				  String javaCheck = fName.substring(fName.length() - 5);
+				  if(javaCheck.equals(".java")) {
+					  try {
+							FileWriter fw = new FileWriter(f, true);
+							fw.write("\n" + "//Copyright © 2023 Leighton Hsieh");
+								
+							fw.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+				  }
 				}
 			}
 		}
@@ -31,3 +46,5 @@ public class DirectoryIterator {
 		 */
 	}
 }
+
+//Copyright © 2023 Leighton Hsieh
